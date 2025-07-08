@@ -19,11 +19,17 @@ def main():
     # Run command.
     run_parser = subparsers.add_parser("run", help="Run the server (default).")
 
-    args = parser.parse_args()
+    # Setup command.
+    setup_parser = subparsers.add_parser("setup", help="Setup the application.")
 
-    if args.command == "run":
+    # Execute the command.
+    args = parser.parse_args()
+    if args.command == "setup":
+        from .setup import setup
+
+        setup()
+
+    else:
         from .run import run
 
         run()
-    else:
-        parser.print_help()
